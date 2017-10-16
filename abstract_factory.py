@@ -11,7 +11,7 @@ class Empleado(object):
     __metaclass__= Registro_Empleado
 
 class Nomina(Prototype):
-    def __init__(self, nombre, apmaterno, appaterno, numero, salario, id):
+    def __init__(self, nombre, apmaterno, appaterno, numero, salario):
         self.id=Empleado()
         self.nombre = nombre
         self.apmaterno = apmaterno
@@ -58,6 +58,7 @@ empleado = Nomina("Jesus", "Ramirez", "Valenzuela", 419401, 2500)
 clone = empleado.prototype(bono = 2000)
 
 print ("Nomina del 01/enero/2017 al 15/enero/2017")
+print("ID: "empleado.id)
 print("Nombre:", empleado.nombre, empleado.apmaterno, empleado.appaterno)
 print("Empleado#", empleado.numero)
 print("Cantidad a Pagar $", empleado.salario)
