@@ -1,30 +1,23 @@
-#class Empresa(object):
-
+#class Empresa(type):
+#	instances = dict()
 #class Departamento(Empresa):
+class Puesto(type):#Empresa):
+    instances = dict()
+    def __call__(cls, *args, **kwargs):
+        if cls.__name__ not in Puesto.instances:
+            Puesto.instances[cls.__name__]= type.__call__(cls, *args, **kwargs)
+            return Puesto.instances[cls.__name__]
+    #_instance = None
+    #def __new__(class_, *args, **kwargs):
+        #if not isinstance(class_._instance, class_):
+         #   class_._instance = object.__new__(class_, *args, **kwargs)
+        #return class_._instance
 
-class Puesto(object):#Empresa):
-    #instances = {}
-    #def __call__(cls, *args, **kwargs):
-        #if cls not in cls._instances:
-            #cls._instances[cls]= super(Puesto, cls).__call__(*args, **kwargs)
-            #return cls._instances[cls]
-    _instance = None
-    def __new__(class_, *args, **kwargs):
-        if not isinstance(class_._instance, class_):
-            class_._instance = object.__new__(class_, *args, **kwargs)
-        return class_._instance   
-    
-class Empleado(Puesto): #object
-   # __metaclass__= Puesto
-        
+class Empleado(object): #object
+    __metaclass__= Puesto
 
-    
-x = Puesto('DFGS345')
-print (x)
-y = Puesto('DFGS345')
-print (y)
-z = Puesto('DFVE345')
-print (z)
-print(x)
-print(y)
-print(z)
+
+
+inst0 = Empleado()
+inst1 = Empleado()
+print(id(inst1) == id(inst0))
